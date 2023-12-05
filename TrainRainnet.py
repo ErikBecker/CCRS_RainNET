@@ -79,6 +79,32 @@ def custom_loss(y_true, y_pred):
     loss = rmse          
     return loss
 
+#import tensorflow as tf
+#import tensorflow_probability as tfp
+#
+#def pearson_correlation_loss(y_true, y_pred):
+#    pearson_correlation = tfp.stats.correlation(y_true, y_pred, sample_axis=None, event_axis=None)
+#    # We subtract the correlation from 1 because we want our loss to be small when correlation is high
+#    return 1 - pearson_correlation
+#
+#import tensorflow as tf
+#import tensorflow_probability as tfp
+#
+## Assume y_true and y_pred are one-dimensional tensors
+#def quantile_mapping(y_true, y_pred, num_quantiles=100):
+#    # Step 1: Compute the quantiles
+#    y_true_quantiles = tfp.stats.quantiles(y_true, num_quantiles=num_quantiles)
+#    y_pred_quantiles = tfp.stats.quantiles(y_pred, num_quantiles=num_quantiles)
+#
+#    # Step 2: Find corresponding values in y_pred for each quantile
+#    y_pred_sorted = tf.sort(y_pred)
+#    y_pred_values = tf.gather(y_pred_sorted, tf.cast(y_pred_quantiles * tf.size(y_pred, out_type=tf.float32), tf.int32))
+#
+#    # Step 3: Replace values in y_pred with corresponding values from y_true
+#    y_pred_mapped = tfp.math.interp_regular_1d_grid(y_pred, y_pred_values, y_true_quantiles)
+#
+#    return y_pred_mapped
+
 if __name__== "__main__":
 
     print('Start', strftime('%Y-%m-%d %H:%M:%S', localtime(time())))
